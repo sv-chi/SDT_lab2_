@@ -3,15 +3,19 @@
 #include <string>
 #include <iostream>
 
+//Класс, в котором методы вызывается при каждом изменении
 class IObserver {
 public:
-    virtual void Update() = 0;
+    virtual void Update(bool existence, long size) = 0;//метод обновления
 };
 
+//Класс, в котором вызываются уведомления об изменении файла
 class FileObserver: IObserver
 {
+private:
+    long lastSize = -1;//здесь хранится последний размер файла
 public:
-    void Update();
+    void Update(bool existence, long size);//уведомления об изменении файла
 };
 
 #endif // OBSERVER_H

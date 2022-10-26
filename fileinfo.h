@@ -3,13 +3,15 @@
 #include <string>
 #include <sys/stat.h>
 
+using namespace std;
+
 class FileInfo
 {
 public:
-    std::string name; // имя файла
+    string name; // имя файла
     long size; // размер
     bool existence; // существование файла
-    FileInfo(std::string fileName);
+    FileInfo(string fileName);
 };
 
 #endif // FILEINFO_H
