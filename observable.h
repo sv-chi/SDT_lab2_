@@ -11,19 +11,20 @@ using namespace std;
 class Observable
 {
 private:
-    vector<FileObserver*> subscribers;//отслеживание всех наблюдателей
+    vector<IObserver*> subscribers;//коллекция всех наблюдателей
 public:
-    void Attach(FileObserver *observer);//добавить наблюдателя
-    void Detach(FileObserver *observer);//удалить наблюдателя
+    void Attach(IObserver *observer);//добавить наблюдателя
+    void Detach(IObserver *observer);//удалить наблюдателя
     void Notify(bool existence, long size);//оповещение всех наблюдателей
 };
 
-//Класс, в котором мы храним предыдущее состояние и можем проверить файл и посмотреть изменения
+//Класс, в котором мы храним состояние и можем проверить файл и посмотреть изменения
+//конкретное наблюдаемое, его состояние описывается FileInfo
 class FileMonitor: public Observable {
 private:
     FileInfo prevFileState;//здесь хранится прошлое файла
 public:
-    void Change(bool existence, long size);//изменения
+    void Change(bool existence, long size);//метод, который мы вызываем, когда в нашем файле произошли изменения
     FileMonitor(string _name);
     void checkFile();//проверяем состояние файла
 };

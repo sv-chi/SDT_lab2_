@@ -10,7 +10,7 @@ public:
 };
 
 //Класс, в котором вызываются уведомления об изменении файла
-class FileObserver: IObserver
+class FileObserver: public IObserver
 {
 private:
     long lastSize = -1;//здесь хранится последний размер файла
